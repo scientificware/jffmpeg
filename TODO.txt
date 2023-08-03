@@ -1,0 +1,9 @@
+- Create a configure script to autogenerate the config.mak file.
+- Add H263 codec - done
+- Add H263+ codec - done (please contact us)
+- Add MPEG4 codec - done (please contact us)
+- Add H264 codec
+- Reinstate MPEG-1 and MPEG-2 codecs
+- Resynchronize with latest Ffmpeg from CVS - done (please contact us)
+- A config.local file for the config.mak to read system specific settings from.
+This file NOT to be checked in, but instead listed in .cvsignore.

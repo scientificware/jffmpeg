@@ -1,0 +1,101 @@
+#
+#  Copyright (c) 2002 Francisco Javier Cabello
+#  Copyright (c) 2004 Guilhem Tardy (www.salyens.com)
+#
+#  This library is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU Lesser General Public
+#  License as published by the Free Software Foundation; either
+#  version 2 of the License, or (at your option) any later version.
+# 
+#  This library is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#  Lesser General Public License for more details.
+# 
+#  You should have received a copy of the GNU Lesser General Public
+#  License along with this library; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+1) Install JDK
+
+    The JDK currently in use for this project is jdk1.4.2. It might work with
+    earlier versions as well but it was tested using this.
+
+    You can usually get a working jdk from either Sun, IBM, or Blackdown. Personally
+    I stick with Sun because it is the official distribution but IBM's is quite
+    fast so you might have good luck with that one as well.
+
+2) Download ffmpeg 0.4.7 and install it.
+
+    You can get it from http://ffmpeg.sourceforge.net/
+
+    If you are interested in the H263_RTP codec (aka RFC2190) then you
+    will need to download specifically version 0.4.7, because you will
+    need the patch in ffmpeg-0.4.7_patch/ to enable proper packetization.
+
+    The latest version of Ffmpeg from CVS would require little work
+    to function, but porting the packetization code is non-trivial.
+
+    Expand the contents to a working directory.
+
+2.5) Apply patch to ffmpeg-0.4.7 for H263_RTP
+
+    If you're interested in H263 over RTP, apply the ffmpeg 0.4.7 patch.
+
+    The necessary files can be found in the ffmpeg-0.4.7_patch/ directory.
+    Copy the files in the libavcodec directory over their respective files
+    in the ffmpeg-0.4.7 distribution and recompile ffmpeg.
+
+3) Set up yout environment variables
+
+    JAVA_HOME: The location of the "home" directory of your java installation.
+    JMFHOME: The location of the root directory of your JMF install.
+
+    Note: If you are compiling with MinGW under Windows, the JMFHOME variable must
+    take the form "C:/PROGRA~1/JMF2.1.1e" (for example). This is because the java
+    executables are expecting a Windows-style directory in their arguments.
+
+4) Make jffmpeg.
+
+	cd jffmpeg
+	make
+	make install
+
+    Note: The install step might have to be done as root, depending on where your
+    JMFHOME directory is set. The libraries will be copied to your JMFHOME/ilb
+    directory.
+
+5) Setup JMF to use the new codec.
+
+    You will need to add the jffmpeg encoder/decoder to the list of plugins inside
+    of JMF. Generally this is done using the JMStudio.
+
+    - Go to File->Preferences->Plugins->Codec
+    - Remove the old h263 codecs (they are somewhat inefficient). There should be
+      one "native" encoder, and two decoders (one java, one native).
+    - In the text field, type "net.sourceforge.jffmpeg.NativeEncoder" and press the
+      "Add" button.
+    - Do the same thing for "net.sourceforge.jffmpeg.NativeDecoder".
+    - Make sure that the codecs are in the list (they should appear at the bottom).
+    - Press the "Commit" button (very important step!)
+
+    Another performance tip for Windows users; I have noticed through lots of
+    trial and error that the "GDIRenderer" is much more efficient than the
+    DDRenderer. So, you might want to go to the "Renderer" tab, and "Move Up" the
+    GDIRenderer so that it is above the DDRenderer. Again, make sure you press the
+    "Commit" button.
+
+    On Linux, the best renderer appears to be the XLibRenderer, so you might want
+    to try to use that one if possible.
+
+    Also if you are using the Swing Lightweight renderer then don't expect
+    stellar performance, as it is quite slow. I myself have a swing application but
+    I popup a separate AWT window just to use the GDIRenderer. You might want to think
+    about doing the same.
+
+    After all that is said and done, make sure you restart JMStudio, and then try to
+    "Transmit" to yourself using the new codec. If you have a web-cam you can see the
+    result of the transmission.
+
+    Feel free to play with the codec controls to adjust various parameters.

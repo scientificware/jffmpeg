@@ -1,0 +1,75 @@
+[November 2006] - Jonathan Hueber
+  - Fix up AVI and MPEG demultiplexers
+  - Add sprite trajectory decoding and quarter pixel motion for DIVX
+
+[January 2006] - Jonathan Hueber
+
+Video Codecs:
+  - Bug fixes for DIVX and XVID
+  - Speed improvments
+
+[October 2004] - Jonathan Hueber
+
+First submission:
+  - Added Codec management framework
+  - Improved JNI wrapper format support
+  - Native Codecs:
+       + h263
+       + div3
+       + mpeg1/2
+       + divx
+       + mp42
+       + mpg4
+       + wmv1
+       + wmv2
+  - Java Codecs (video):
+       + div3
+       + mpeg1/2
+       + mp42
+       + mpg4
+  - Java Codecs (audio):
+       + mp3
+       + ac3
+  - Java demultiplexers:
+       + vob
+
+
+[December 2004] - Jonathan Hueber
+
+Video Codecs:
+  - Added Java divx video codec (preliminary)
+  - Created infrastructure for shared video DCT and motion code
+
+Audio Codecs:
+  - Added Vorbis Codec
+
+Demultiplexers:
+  - Added Ogg Demultiplexer
+
+General:
+  - Added licensing information and READMEs
+
+
+[January 2005] - Jonathan Hueber
+
+Video Codecs:
+  - Added Java xvid codec (preliminary)
+  - Bug fixes for DIVX codec
+  - Updates for shared Motion code
+
+
+[February 2005] - Jonathan Hueber
+
+Video Codecs:
+  - Added DX50 Native and Java Codec (Mpeg4 derivative)
+  - Bug fixes for DIVX and XVID
+  - All video codecs now share DCT and Motion code
+
+Demultiplexers:
+  - Added GPL AVI demultiplexer (useful for debugging only)
+
+
+[August 2005] - Jonathan Hueber
+
+Video Codecs:
+  - Bug fixes for DIVX and XVID
