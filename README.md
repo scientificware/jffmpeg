@@ -2,7 +2,7 @@
 
 This repository contains the source code of the **jffmpeg** project. [The webiste of this project is here.](https://jffmpeg.sourceforge.net/download.html)
 
-Below is the content of the README file from the proejct.
+Below is the content of the README file from the project.
 
 ## Introduction
 
